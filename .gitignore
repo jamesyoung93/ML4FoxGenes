@@ -1,0 +1,10 @@
+# R and RStudio
+.Rhistory
+.RData
+.Rproj.user/
+
+# results
+results/
+
+# renv caches
+renv/
