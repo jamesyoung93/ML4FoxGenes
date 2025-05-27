@@ -23,3 +23,16 @@ docs/       - additional documentation
    ```
 
 An example SLURM job file `job.slurm` is provided for running on HPC systems.
+
+## Running on an HPC Cluster
+
+Submit the included job script using `sbatch`:
+
+```bash
+sbatch job.slurm
+```
+
+The script loads R via the module system and restores the package environment
+using `renv` before executing `analyses/run_analysis.R`. Ensure your cluster has
+network access for package installation or pre-install the required packages in
+your user library.
