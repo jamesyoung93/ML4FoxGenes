@@ -24,18 +24,18 @@ library(ROCR)
 
 
 ```{r}
-df <- read_csv("Anabaena7120.csv")
+df <- read_csv(file.path("data", "Anabaena7120.csv"))
 
 df$Annotation <- df$`Locus Name`
-fox1 <- read_csv("FoxGenePositives.csv")
+fox1 <- read_csv(file.path("data", "FoxGenePositives.csv"))
 fox1 <- fox1 %>% mutate(Annotation = GENES)
 
 df_tree2 <- df #as.data.frame(cbind(df, kmer, kmer2, kmer4))
 
-negative <- read_csv("FoxGeneNegatives.csv")
+negative <- read_csv(file.path("data", "FoxGeneNegatives.csv"))
 negative$Annotation <- negative$GENES
 
-unlabeled <- read_csv("UnlabeledFoxGenes.csv")
+unlabeled <- read_csv(file.path("data", "UnlabeledFoxGenes.csv"))
 unlabeled$Annotation <- unlabeled$GENES
 
 negative <- anti_join(negative, unlabeled, by = "Annotation")
@@ -394,12 +394,12 @@ plot(fit.cart$finalModel)
 library(readr)
 library(tidyverse)
 
-df <- read_csv("Anabaena7120.csv")
+df <- read_csv(file.path("data", "Anabaena7120.csv"))
 df$Annotation <- df$`Locus Name`
-negative <- read_csv("FoxGeneNegatives.csv")
+negative <- read_csv(file.path("data", "FoxGeneNegatives.csv"))
 negative$Annotation <- negative$GENES
 
-unlabeled <- read_csv("UnlabeledFoxGenes.csv")
+unlabeled <- read_csv(file.path("data", "UnlabeledFoxGenes.csv"))
 unlabeled$Annotation <- unlabeled$GENES
 
 df_tree2 <- semi_join( negative, unlabeled, by = "Annotation")
@@ -453,7 +453,7 @@ df_tree3$GLM_PRED <- predict(fit.glm, newdata = df_tree3, type = "prob")[,2]
 
 df_tree3$ENS_PRED <- (predict(fit.glm, newdata = df_tree3, type = "prob")[,2] + predict(fit.xgb, newdata = df_tree3, type = "prob")[,2] + predict(fit.rf, newdata = df_tree3, type = "prob")[,2])/3
 
-write_csv(df_tree3, "Predictions.csv")
+write_csv(df_tree3, file.path("results", "Predictions.csv"))
 
 ```
 
