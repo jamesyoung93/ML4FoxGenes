@@ -1,0 +1,11 @@
+{
+  "R": {
+    "Version": "4.2.0"
+  },
+  "Packages": {
+    "rmarkdown": {
+      "Package": "rmarkdown",
+      "Version": "2.24"
+    }
+  }
+}
